@@ -13,7 +13,6 @@ if __name__ == "__main__":
 
     for suhu in generator_iot():
         jumlah_data += 1
-        print(f"Pembacaan {jumlah_data}: {suhu}°C")
 
         if not 15 <= suhu <= 38:
             semua_valid = False
