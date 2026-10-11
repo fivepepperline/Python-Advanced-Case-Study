@@ -18,5 +18,14 @@ if __name__ == "__main__":
         if not 15 <= suhu <= 38:
             semua_valid = False
 
+        if suhu < 20: 
+            kategori = "Dingin"
+        elif suhu <= 30:
+            kategori = "Normal"
+        else:
+            kategori = "Panas"
+
+        print(f"Pembacaan {jumlah_data}: {suhu}°C - Kategori: {kategori}")
+
     print(f"\nJumlah pembacaan: {jumlah_data}")
     print(f"Semua suhu valid: {semua_valid}")
