@@ -20,7 +20,7 @@ Suhu yang masuk akan langsung dikategorikan. Suhu yang di bawah 20 derajat, maka
 
 # Cara Menjalankan Program
 1. Pastikan Python sudah terpasang.
-2. Buka terminal di folder `case-01-analisis-nilai`.
+2. Buka terminal di folder `case-02-genrator-iot`.
 3. Jalankan perintah berikut:
 
 ```bash
