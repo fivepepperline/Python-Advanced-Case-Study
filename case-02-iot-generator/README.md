@@ -27,7 +27,11 @@ Suhu yang masuk akan langsung dikategorikan. Suhu yang di bawah 20 derajat, maka
 python main.py
 ```
 # Hasil Program
-Program akan menampilkan hasil pembacaan suhu berturut-turut sebanyak 10 kali. 
+* Program menghasilkan 10 pembacaan suhu.
+* Setiap pembacaan langsung ditampilkan bersama kategorinya.
+* Kategori terdiri dari Dingin, Normal, dan Panas.
+* Validasi memastikan suhu berada dalam rentang 15–38°C.
+* Data diproses secara bertahap menggunakan generator, tanpa menyimpan seluruh pembacaan dalam list.
 
 # Konsep Python yang digunakan
 * Iteration Pattern
