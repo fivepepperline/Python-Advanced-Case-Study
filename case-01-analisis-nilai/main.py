@@ -43,3 +43,25 @@ for mhs in mahasiswa_berprestasi:
         f"Nilai Akhir: {mhs['Nilai Akhir']:.2f}"
     )
 
+print("\nRanking Mahasiswa")
+
+ranking_mahasiswa = sorted(
+    nilai_akhir,
+    key=lambda mhs: mhs["Nilai Akhir"],
+    reverse=True
+)
+
+for peringkat, mhs in enumerate(ranking_mahasiswa, start=1):
+    print(
+        f"Peringkat {peringkat}: "
+        f"{mhs['Nama']} | "
+        f"NIM: {mhs['NIM']} | "
+        f"Nilai: {mhs['Nilai Akhir']:.2f}"
+    )
+
+mahasiswa_terbaik = ranking_mahasiswa[0]
+
+print("\nMahasiswa Terbaik")
+print(f"Nama: {mahasiswa_terbaik['Nama']}")
+print(f"NIM: {mahasiswa_terbaik['NIM']}")
+print(f"Nilai Akhir: {mahasiswa_terbaik['Nilai Akhir']:.2f}")
