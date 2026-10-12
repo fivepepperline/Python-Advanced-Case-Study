@@ -1,3 +1,5 @@
+import re
+
 class User:
     def __init__(self, username, password):
         self.username = username
@@ -34,3 +36,36 @@ if __name__ == "__main__":
     user = User("galang01", "Python123")
     print("Username:", user.username)
     print("User berhasil dibuat.")
+
+
+# Akun yang terdaftar
+akun_terdaftar = User("galang01", "Python123")
+
+
+# Fungsi login
+def login(username, password):
+    try:
+        user = User(username, password)
+    except ValueError as error:
+        print(f"Login ditolak: {error}")
+        return False
+
+    if user.username != akun_terdaftar.username:
+        print("Login ditolak: Username tidak terdaftar.")
+        return False
+
+    if user.password != akun_terdaftar.password:
+        print("Login ditolak: Password salah.")
+        return False
+
+    print("Login berhasil.")
+    return True
+
+
+if __name__ == "__main__":
+    print("PENGUJIAN LOGIN")
+
+    login("galang!", "Python123")
+    login("galang01", "Ab1")
+    login("galang01", "PythonOnly")
+    login("galang01", "Python123")
