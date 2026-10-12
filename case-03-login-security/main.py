@@ -1,4 +1,9 @@
+
 import re
+from datetime import datetime
+
+audit_logs = []
+
 
 class User:
     def __init__(self, username, password):
@@ -25,47 +30,65 @@ class User:
     def password(self, value):
         if len(value) < 8:
             raise ValueError("Password minimal 8 karakter.")
-
         if not re.search(r"\d", value):
             raise ValueError("Password harus mengandung minimal 1 angka.")
-
         self._password = value
 
 
-if __name__ == "__main__":
-    user = User("galang01", "Python123")
-    print("Username:", user.username)
-    print("User berhasil dibuat.")
+def audit_log(func):
+    def wrapper(username, password):
+        berhasil, alasan = func(username, password)
+
+        status = "BERHASIL" if berhasil else "DITOLAK"
+
+        catatan = {
+            "Waktu": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Username": username,
+            "Status": status,
+            "Alasan": alasan
+        }
+
+        audit_logs.append(catatan)
+        print(f"Login {status}: {username} - {alasan}")
+
+        return berhasil
+
+    return wrapper
 
 
-# Akun yang terdaftar
 akun_terdaftar = User("galang01", "Python123")
 
 
-# Fungsi login
+@audit_log
 def login(username, password):
     try:
         user = User(username, password)
     except ValueError as error:
-        print(f"Login ditolak: {error}")
-        return False
+        return False, str(error)
 
     if user.username != akun_terdaftar.username:
-        print("Login ditolak: Username tidak terdaftar.")
-        return False
+        return False, "Username tidak terdaftar."
 
     if user.password != akun_terdaftar.password:
-        print("Login ditolak: Password salah.")
-        return False
+        return False, "Password salah."
 
-    print("Login berhasil.")
-    return True
+    return True, "Login berhasil."
 
 
 if __name__ == "__main__":
-    print("PENGUJIAN LOGIN")
+    print(" PENGUJIAN LOGIN ")
 
     login("galang!", "Python123")
     login("galang01", "Ab1")
     login("galang01", "PythonOnly")
     login("galang01", "Python123")
+
+    print("\n AUDIT LOG ")
+
+    for log in audit_logs:
+        print(
+            f"[{log['Waktu']}] "
+            f"Username: {log['Username']} | "
+            f"Status: {log['Status']} | "
+            f"Alasan: {log['Alasan']}"
+        )
